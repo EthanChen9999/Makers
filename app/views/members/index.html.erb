@@ -1,0 +1,7 @@
+<% if current_user.photo %>
+<%= link_to(image_tag(@photo.image_url), controller: "registrations", action: "edit") %>
+<% else %>
+<%= link_to(image_tag('default.jpg'), controller: "registrations", action: "edit") %>
+<% end %>
+<h1>Members#index</h1>
+<p>Find me in app/views/members/index.html.erb</p>
