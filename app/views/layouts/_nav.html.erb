@@ -26,13 +26,12 @@
 
           <ul class="dropdown-menu" role="menu">
             <% if current_user %>
-            <p>Hi!!! <%= current_user.username %></p>
+            <li><%= link_to current_user.username, members_index_path %></li>
 
             <li><%= link_to('登出', destroy_user_session_path, :method => :delete)  %> </li>
-            <li><%= link_to('修改密码', edit_registration_path(:user)) %></li>
+            <li><%= link_to('修改资料', edit_user_registration_path(:user)) %></li>
 
               <% else %>
-              <p> Hi!<%= 'guest' %>
                 <li><%= link_to('注册', new_registration_path(:user)) %> </li>
                 <li><%= link_to('登入', new_session_path(:user)) %></li>
                 <% end %>
