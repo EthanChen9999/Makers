@@ -1,0 +1,13 @@
+current directory: /home/ethan/project/makers/vendor/bundle/ruby/2.3.0/gems/json-2.0.2/ext/json
+/usr/local/rvm/rubies/ruby-2.3.0/bin/ruby -r ./siteconf20161124-21355-vfzfj4.rb extconf.rb
+creating Makefile
+
+current directory: /home/ethan/project/makers/vendor/bundle/ruby/2.3.0/gems/json-2.0.2/ext/json
+make "DESTDIR=" clean
+
+current directory: /home/ethan/project/makers/vendor/bundle/ruby/2.3.0/gems/json-2.0.2/ext/json
+make "DESTDIR="
+make: Nothing to be done for 'all'.
+
+current directory: /home/ethan/project/makers/vendor/bundle/ruby/2.3.0/gems/json-2.0.2/ext/json
+make "DESTDIR=" install
