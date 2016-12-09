@@ -19,3 +19,6 @@
 # Ignore secret documents
 /config/database.yml
 /config/secret.yml
+
+# Ignore uploads files.
+/public/uploads

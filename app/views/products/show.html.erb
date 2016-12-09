@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-md-1 col-md-offset-1">
+    <div class="row">
+      <div class="col-md-2 col-md-offset-5">
+        <%= image_tag @maker.photo.image_url(:thumb) %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-1 col-md-offset-1">
+    <h3><%= @product.title %></h3>
+    <p><%= @maker.username %> 上传</p>
+    <% if @maker.id == current_user.id %>
+    <%= link_to('修改内容', edit_product_path(@product)) %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-1 panel panel-default image-box">
+
+      <%= image_tag @product.product_images.first.image_url(:big).to_s %>
+
+      <% @product.product_images.each do |each_image| %>
+
+        <%= link_to image_tag each_image.image_url(:thumb) %>
+
+      <% end %>
+
+  </div>
+  <div class="col-md-3 col-md-offset-1">
+    <h3>大纲</h3>
+    <ul>
+      <li>it's not yet completed</li>
+      <li>do it when next time</li>
+    </ul>
+    <div class="panel panel-default collection-box">
+      <button type="button" class="btn btn-default collection-btn"><span class="glyphicon glyphicon-heart"></span>我的最爱</button>
+      <button type="button" class="btn btn-default collection-btn"><span class="glyphicon glyphicon-plus"></span>加入收藏</button>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-1">
+
+    <h3>详细介绍</h3>
+    <%= @product.description %>
+  </div>
+</div>

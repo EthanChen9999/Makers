@@ -15,3 +15,10 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.centered{
+  width: auto;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
