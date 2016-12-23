@@ -1,7 +1,9 @@
 class Product < ApplicationRecord
   belongs_to :user
   has_many :product_images, dependent: :destroy
+  has_one :drawing, dependent: :destroy
   accepts_nested_attributes_for :product_images
+  accepts_nested_attributes_for :drawing
 
   validates :title, :description, presence: { :message =>  "图纸名称及图纸描述不能为空" }
   validates :product_images, presence: { message: "至少需上传一张图纸图片"}

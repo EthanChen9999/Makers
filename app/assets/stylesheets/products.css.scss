@@ -1,5 +1,20 @@
-.image-box{
+#image-box{
     overflow: hidden;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    height: 480px;
+
+}
+#drawing-box{
+    height: 480px;
+
+    display: none;
+}
+.thumb-image{
+    overflow: hidden;
+}
+#canvas3d{
+    height: 80px;
 }
 .collection-box{
     margin-top: 10%;

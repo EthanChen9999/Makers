@@ -5,7 +5,9 @@ class ProductsController < ApplicationController
   end
   def new
     @product = Product.new
+    @product.build_drawing
     5.times { @product.product_images.new }
+
   end
   def create
     @product = Product.new(product_images_params)
@@ -23,8 +25,8 @@ class ProductsController < ApplicationController
   end
   def show
     @product = Product.find(params[:id])
-
     @maker = User.find(@product.user_id)
+
   end
   def edit
     @product = Product.find(params[:id])
@@ -55,8 +57,18 @@ class ProductsController < ApplicationController
     @image.destroy
     redirect_to members_index_path
   end
+  def get_json
+    @drawing = Product.find(params[:id]).drawing.drawing_url.to_s
+    @@data = File.read(Rails.root.to_s+"/public"+@drawing)
+    respond_to do |format|
+      format.json do
+        render json: @@data
+      end
+    end
+  end
   private
   def product_images_params
-    params.require(:product).permit(:title, :description, product_images_attributes: [:id, :image])
+    params.require(:product).permit(:title, :description, product_images_attributes: [:id, :image], drawing_attributes: [:id, :drawing])
   end
+
 end

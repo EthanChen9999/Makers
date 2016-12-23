@@ -12,6 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap-sprockets
 //= require turbolinks
+//= require three.min
+//= require STLLoader
+//= OrbitControls
 //= require_tree .
+//= require bootstrap-sprockets

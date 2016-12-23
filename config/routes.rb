@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+
+  get 'products/get_json/:id' => 'products#get_json'
+
   get 'members/test' => 'members#test'
   get 'members/display' => 'members#display'
 

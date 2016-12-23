@@ -10,23 +10,17 @@
     <h3><%= @product.title %></h3>
     <p><%= @maker.username %> 上传</p>
     <% if @maker.id == current_user.id %>
-    <%= link_to('修改内容', edit_product_path(@product)) %>
+      <%= link_to('修改内容', edit_product_path(@product)) %>
     <% end %>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-6 col-md-offset-1 panel panel-default image-box">
 
-      <%= image_tag @product.product_images.first.image_url(:big).to_s %>
-
-      <% @product.product_images.each do |each_image| %>
-
-        <%= link_to image_tag each_image.image_url(:thumb) %>
-
-      <% end %>
-
+<div class="row" id="image-box-parent">
+  <div class="col-md-6 col-md-offset-1" id="image-box">
+    <div class="col-md-12" id="drawing-box" drawing-target="<%= @product.id %>"></div>
+    <%= image_tag(@product.product_images.first.image_url(:big).to_s, 'class': "img-thumbnail", 'id': 'big-image') %>
   </div>
-  <div class="col-md-3 col-md-offset-1">
+  <div class="col-md-3 col-md-offset-1" id="outline">
     <h3>大纲</h3>
     <ul>
       <li>it's not yet completed</li>
@@ -40,8 +34,25 @@
 </div>
 <div class="row">
   <div class="col-md-6 col-md-offset-1">
+    <% @product.product_images.each do |each_image| %>
+    <div class="col-md-2">
+      <%= link_to (image_tag each_image.image_url(:thumb), 'class': "img-thumbnail thumb-image "), "#", remote: 'true' %>
+    </div>
+    <% end %>
+    <div class="col-md-2">
+      <%= link_to (image_tag('cube.jpg', width: '100%', height: 'auto', 'class': "img-thumbnail thumb-drawing")), "#", remote: 'ture' %>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-1">
 
     <h3>详细介绍</h3>
     <%= @product.description %>
+
+
   </div>
 </div>

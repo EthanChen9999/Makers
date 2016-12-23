@@ -9,6 +9,12 @@
     <%= product.text_area :description, class: 'form-control', placeholder: '请输入您想添加的描述' %>
   </div>
   <div class="form-group">
+    <h5><%= product.label :上传3D图纸 %><small>-仅支持stl</small></h5>
+    <%= product.fields_for :drawing do |drawing| %>
+    <%= drawing.file_field :drawing %>
+    <% end %>
+  </div>
+  <div class="form-group">
     <h5><%= product.label :上傳圖片 %><small>-仅支持jpg/jpeg/png文件格式</small></h5>
     <%= product.fields_for :product_images do |image| %>
       <%= image.file_field :image, accept: 'image/jpeg,image/jpg,image/png' %>
