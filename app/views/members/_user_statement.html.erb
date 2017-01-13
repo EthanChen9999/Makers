@@ -1,0 +1,7 @@
+<% if current_user.photo %>
+<%= link_to(image_tag(@photo.image_url(:large), class: "img-responsive centered col-md-12"), controller: "registrations", action: "edit") %>
+<h3 class="centered"><%= current_user.username %></h3>
+<% else %>
+<%= link_to(image_tag('default.jpg', class: 'centered'), controller: "registrations", action: "edit") %>
+<h3 class="centered"><%= current_user.username %></h3>
+<% end %>

@@ -1,26 +1,22 @@
 class ProductsController < ApplicationController
-  layout "nested_application", only: [:index, :new]
+  layout "nested_application", only: [:index]
   def index
     @products = current_user.products.all
   end
   def new
     @product = Product.new
     @product.build_drawing
-    5.times { @product.product_images.new }
-
+    @product.build_product_image
   end
   def create
-    @product = Product.new(product_images_params)
-    @product.user_id = current_user.id
-
+    @product = current_user.products.new(product_params)
     if @product.save
-      flash[:notice] = '新增图纸成功'
-      redirect_to members_index_path
-    else
-      @product.valid?
-      flash[:notice] = @product.errors.first[1]
-      redirect_to members_index_path
 
+      flash[:notice] = '成功新增模型'
+      redirect_to action: 'new'
+    else
+      flash[:notice] = @product.errors.full_messages
+      redirect_to members_index_path
     end
   end
   def show
@@ -35,28 +31,31 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
 
-    if @product.update(product_images_params)
-      flash[:notice] = '变更图纸成功'
-      redirect_to edit_product_path(@product)
+    if @product.update(product_params)
+
+      redirect_to members_index_path
     else
-      flash[:notice] = '变更图纸失败'
-      redirect_to edit_product_path(@product)
+      render :edit
     end
   end
-  def add_image
-    @add_image = Product.find(params[:id]).product_images.new
-    @add_image.save(product_images_params)
+
+  def crop
+    @image = ProductImage.find(params[:product][:product_images_attributes][:'0'][:id])
+    @image.crop_x = params[:product][:product_images_attributes][:'0'][:crop_x]
+    @image.crop_y = params[:product][:product_images_attributes][:'0'][:crop_y]
+    @image.crop_w = params[:product][:product_images_attributes][:'0'][:crop_w]
+    @image.crop_h = params[:product][:product_images_attributes][:'0'][:crop_h]
+    @image.save
+    redirect_to members_index_path
   end
+
+
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
     redirect_to members_index_path
   end
-  def destroy_image
-    @image = ProductImage.find(params[:id])
-    @image.destroy
-    redirect_to members_index_path
-  end
+
   def get_json
     @drawing = Product.find(params[:id]).drawing.drawing_url.to_s
     @@data = File.read(Rails.root.to_s+"/public"+@drawing)
@@ -67,8 +66,7 @@ class ProductsController < ApplicationController
     end
   end
   private
-  def product_images_params
-    params.require(:product).permit(:title, :description, product_images_attributes: [:id, :image], drawing_attributes: [:id, :drawing])
+  def product_params
+   params.require(:product).permit(:title, :description, :tags, :print_time, :dimensions, :quantity, drawing_attributes: [:id, :drawing], product_image_attributes: [:id, :crop_x, :crop_y, :crop_w, :crop_h, {images: []}])
   end
-
 end

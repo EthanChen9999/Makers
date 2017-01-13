@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161219013653) do
+ActiveRecord::Schema.define(version: 20170110134926) do
 
   create_table "answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "question_id"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20161219013653) do
   end
 
   create_table "drawings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "products_id"
+    t.integer "product_id"
     t.string  "drawing"
   end
 
@@ -33,15 +33,19 @@ ActiveRecord::Schema.define(version: 20161219013653) do
 
   create_table "product_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "product_id"
-    t.string  "image"
+    t.json    "images"
   end
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "title",       default: "", null: false
-    t.string   "description", default: "", null: false
-    t.integer  "user_id",                  null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "title",                     default: "", null: false
+    t.integer  "user_id",                                null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.string   "tags"
+    t.integer  "print_time"
+    t.json     "dimensions"
+    t.integer  "quantity"
+    t.text     "description", limit: 65535
   end
 
   create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

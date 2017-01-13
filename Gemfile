@@ -2,11 +2,15 @@ source 'https://rubygems.org'
 
 # For bootstrap theme
 gem 'bootstrap-sass'
+gem 'font-awesome-sass', '~> 4.7.0'
 # For attachment management
-gem 'carrierwave'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
 # For account management
 gem 'devise'
+# For WYSIWYG html editor
+gem 'tinymce-rails'
+gem 'tinymce-rails-langs'
 
 gem 'listen', '~> 3.0.5'
 

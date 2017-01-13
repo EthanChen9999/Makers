@@ -10,11 +10,24 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
+// Library
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-fileinput/plugins/canvas-to-blob.min
+//= require bootstrap-fileinput/plugins/sortable.min
+//= require bootstrap-fileinput/fileinput.min
 //= require turbolinks
 //= require three.min
 //= require STLLoader
-//= OrbitControls
-//= require_tree .
+//= require OrbitControls
 //= require bootstrap-sprockets
+//= require bootstrap-fileinput/theme
+//= require bootstrap-fileinput/locales/zh.js
+//= require jquery-jcrop/jquery.Jcrop.min
+//= require jquery-jcrop/jquery.color
+//= require tinymce
+
+// Custom
+//= require members
+//= require products

@@ -1,26 +1,19 @@
 #image-box{
-    overflow: hidden;
-    margin-top: 2%;
+
     margin-bottom: 2%;
-    height: 480px;
 
 }
 #drawing-box{
     height: 480px;
-
     display: none;
 }
-.thumb-image{
-    overflow: hidden;
+
+canvas{
+
 }
-#canvas3d{
-    height: 80px;
+#collection-box{
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
-.collection-box{
-    margin-top: 10%;
-    height: 90px;
-}
-.collection-btn{
-    margin: 5%;
-}
+
 

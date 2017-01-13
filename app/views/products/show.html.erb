@@ -1,62 +1,62 @@
 <div class="row">
-  <div class="col-md-1 col-md-offset-1">
-    <div class="row">
-      <div class="col-md-2 col-md-offset-5">
-        <% if @maker.photo %>
-        <%= image_tag @maker.photo.image_url(:thumb) %>
-        <% else %>
-        <%= image_tag 'default.jpg' %>
-        <% end %>
-
-      </div>
-    </div>
-  </div>
-  <div class="col-md-1 col-md-offset-1">
-    <h3><%= @product.title %></h3>
-    <p><%= @maker.username %> 上传</p>
-    <% if @maker.id == current_user.id %>
-      <%= link_to('修改内容', edit_product_path(@product)) %>
+  <div class="col-md-1 col-md-offset-1 ">
+    <% if @maker.photo %>
+    <%= image_tag @maker.photo.image_url(:thumb), class: "img-responsive center-block"%>
+    <% else %>
+    <%= image_tag 'default.jpg' %>
     <% end %>
   </div>
-</div>
-
-<div class="row" id="image-box-parent">
-  <div class="col-md-6 col-md-offset-1" id="image-box">
-    <div class="col-md-12" id="drawing-box" drawing-target="<%= @product.id %>"></div>
-    <%= image_tag(@product.product_images.first.image_url(:big).to_s, 'class': "img-thumbnail", 'id': 'big-image') %>
-  </div>
-  <div class="col-md-3 col-md-offset-1" id="outline">
-    <h3>大纲</h3>
-    <ul>
-      <li>it's not yet completed</li>
-      <li>do it when next time</li>
-    </ul>
-    <div class="panel panel-default collection-box">
-      <button type="button" class="btn btn-default collection-btn"><span class="glyphicon glyphicon-heart"></span>我的最爱</button>
-      <button type="button" class="btn btn-default collection-btn"><span class="glyphicon glyphicon-plus"></span>加入收藏</button>
-    </div>
+  <div class="col-md-3">
+    <h3><%= @product.title %></h3>
+    <p><%= @maker.username %> 上传</p>
   </div>
 </div>
 <div class="row">
-  <div class="col-md-6 col-md-offset-1">
-    <% @product.product_images.each do |each_image| %>
-    <div class="col-md-2">
-      <%= link_to (image_tag each_image.image_url(:thumb), 'class': "img-thumbnail thumb-image "), "#", remote: 'true' %>
-    </div>
-    <% end %>
-    <div class="col-md-2">
+    <div class="col-md-1 col-md-offset-1">
+      <% @product.product_image.images.each do |each_image| %>
+      <%= link_to (image_tag each_image.url(:square), 'class': "img-responsive col-md-12 thumb-image", "large-image-url": "#{each_image.url(:large)}", style: "padding-left:0px;padding-right:0px; margin-bottom:5%;"), "#", remote: 'true' %>
+      <% end %>
+    <div class="col-md-12">
       <%= link_to (image_tag('cube.jpg', width: '100%', height: 'auto', 'class': "img-thumbnail thumb-drawing")), "#", remote: 'ture' %>
 
     </div>
 
   </div>
+  <div class="col-md-6" id="image-box">
+    <div class="col-md-12" id="drawing-box" drawing-target="<%= @product.id %>"></div>
+      <%= image_tag @product.product_image.images[0].url(:large).to_s, class: "img-thumbnail img-responsive center-block", id: "big-image" %>
+  </div>
+  <div class="col-md-3">
+    <div class="col-md-12 panel panel-default">
+      <div class="col-md-5">打印时间</div>
+      <div class="col-md-7"><p><%= @product.print_time %>分钟</p></div>
+      <div class="col-md-5">尺寸</div>
+      <div class="col-md-7"><p><%= @product.dimensions %> (mm)</p></div>
+      <div class="col-md-5">耗材</div>
+      <div class="col-md-7"><p><%= @product.quantity %>公克</p></div>
+    </div>
+    <div class="col-md-12 panel panel-default", id="collection-box">
+      <div class="col-md-6">
+        <button type="button" class="btn btn-sm btn-default centered"><span class="glyphicon glyphicon-heart"></span>我的最爱</button>
+      </div>
+      <div class="col-md-6">
+        <button type="button" class="btn btn-sm btn-default centered"><span class="glyphicon glyphicon-plus"></span>加入收藏</button>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <button type="button" class="btn btn-lg btn-default btn-block"><a href="<%= @product.drawing.drawing.url %>">免费下载模型</a></button>
+    </div>
+  </div>
+</div>
+<div class="row">
+
 </div>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-1">
 
     <h3>详细介绍</h3>
-    <%= @product.description %>
+    <%= @product.description.html_safe %>
 
 
   </div>

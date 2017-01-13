@@ -3,9 +3,7 @@ class MembersController < ApplicationController
   def index
     @photo = current_user.photo
   end
-  def about
 
-  end
   def display
 
   end

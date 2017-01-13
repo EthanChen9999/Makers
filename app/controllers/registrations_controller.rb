@@ -5,4 +5,5 @@ class RegistrationsController < Devise::RegistrationsController
     self.resource.build_photo
     render :edit
   end
+
 end

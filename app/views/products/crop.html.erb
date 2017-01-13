@@ -1,0 +1,41 @@
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+  $('#cropbox').Jcrop({
+    onChange: update_crop,
+    onSelect: update_crop,
+    setSelect: [0, 0, 320, 180],  //设置一个初选框的位置
+    aspectRatio: 1  //设置选择框高宽比,默认为任意
+  })
+  });
+
+function update_crop(coords){
+  $('#crop_x').val(coords.x);
+  $('#crop_y').val(coords.y);
+  $('#crop_w').val(coords.w);
+  $('#crop_h').val(coords.h);
+
+  $('#preview').css({
+    width: Math.round(100/coords.w * $('#cropbox').width()) + 'px',
+    height: Math.round(100/coords.h * $('#cropbox').height()) + 'px',
+    marginLeft: '-' + Math.round(100/coords.w * coords.x) + 'px',
+    marginTop: '-' + Math.round(100/coords.h * coords.y) + 'px'
+  })
+};
+
+
+
+</script>
+
+<%= image_tag @product.product_images.first.image_url, :id => "cropbox" %>
+  <h4>预览画面</h4>
+<div style="width: 100px; height: 100px; overflow: hidden;">
+  <%= image_tag @product.product_images.first.image_url, id: 'preview' %>
+</div>
+<%= form_for(@product, url: { controller: 'products', action: 'crop' }, method: :patch) do |form| %>
+  <%= form.fields_for :product_images do |image| %>
+  <% %w[x y w h].each do |attribute| %>
+  <%= image.text_field :"crop_#{attribute}", id: "crop_#{attribute}" %>
+  <% end %>
+  <% end %>
+  <p><%= form.submit "Crop" %></p>
+<% end %>

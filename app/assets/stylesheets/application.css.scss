@@ -15,17 +15,30 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
-.centered{
-  width: auto;
-  display: table;
-  margin-left: auto;
-  margin-right: auto;
+@import "jquery.Jcrop.min";
+@import "fileinput";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+html {
+    position: relative;
+    min-height: 100%;
 }
-.footer{
-    margin-top: 10px;
-    margin-bottom: 0px;
-    color: #eee;
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 170px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 170px;
+}
+.centered{
+    width: auto;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
 }
 .list-unstyled li{
     margin-bottom: 8px;

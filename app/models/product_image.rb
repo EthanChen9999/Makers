@@ -1,14 +1,19 @@
 class ProductImage < ApplicationRecord
 
-  mount_uploader :image, ImageUploader
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   belongs_to :product, required: false
+  mount_uploaders :images, ImageUploader
 
-  validate :image_size
+
+
+
 
   private
-
+  def crop_image
+    images.recreate_versions! if crop_x.present?
+  end
   def image_size
-    if image.size > 5.megabytes
+    if images.size > 5.megabytes
       errors.add(:image, "上传档案不能大于5MB")
     end
   end
