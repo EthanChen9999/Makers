@@ -26,18 +26,45 @@
 
           <ul class="dropdown-menu" role="menu">
             <% if current_user %>
-            <li><%= link_to current_user.username, members_index_path %></li>
+              <li><%= link_to current_user.username, members_index_path %></li>
 
-            <li><%= link_to('登出', destroy_user_session_path, :method => :delete)  %> </li>
-            <li><%= link_to('修改资料', edit_user_registration_path(:user)) %></li>
+              <li><%= link_to('登出', destroy_user_session_path, :method => :delete)  %> </li>
+              <li><%= link_to('修改资料', edit_user_registration_path(:user)) %></li>
 
-              <% else %>
-                <li><%= link_to('注册', new_registration_path(:user)) %> </li>
-                <li><%= link_to('登入', new_session_path(:user)) %></li>
-                <% end %>
+            <% else %>
+              <li><%= link_to('注册', new_registration_path(:user), remote: true, method: "get", "data-toggle": "modal", "data-target": ".registration_modal") %> </li>
+              <li><%= link_to('登入', new_session_path(:user), remote: true, method: "get", "data-toggle": "modal", "data-target": ".login_modal") %></li>
+            <% end %>
           </ul>
-          </li>
+        </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+<!-- Login Modal -->
+<div class="modal fade login_modal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Registration Modal -->
+<div class="modal fade registration_modal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,6 +11,8 @@ gem 'devise'
 # For WYSIWYG html editor
 gem 'tinymce-rails'
 gem 'tinymce-rails-langs'
+# For preview EMAIL
+gem 'letter_opener_web'
 
 gem 'listen', '~> 3.0.5'
 
