@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RuCaptcha::Engine => "/rucaptcha"
   # Devise
   devise_for :users, controllers: {
                sessions: "users/sessions",

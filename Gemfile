@@ -11,8 +11,15 @@ gem 'devise'
 # For WYSIWYG html editor
 gem 'tinymce-rails'
 gem 'tinymce-rails-langs'
-# For preview EMAIL
+# For Captcha
+gem 'rucaptcha'
+gem 'dalli'
+# For EMAIL
 gem 'letter_opener_web'
+gem 'mailgun-ruby', '~>1.1.2'
+# For Solr search engine
+gem 'sunspot_rails'
+gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
 
 gem 'listen', '~> 3.0.5'
 

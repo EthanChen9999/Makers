@@ -7,6 +7,7 @@ class Users::SessionsController < Devise::SessionsController
     @user = User.new
     respond_to do |format|
       format.js
+      format.html
     end
   end
 

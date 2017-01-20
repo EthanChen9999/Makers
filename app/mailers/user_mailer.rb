@@ -1,5 +1,5 @@
 class UserMailer < Devise::Mailer
-
+  default from: "postmaster@designing-muse.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -9,6 +9,7 @@ class UserMailer < Devise::Mailer
 
   def notify_comment()
     @greeting = "Hi"
+
     mail(:to => "ethan.chen9999@foxmail.com")
   end
 end
