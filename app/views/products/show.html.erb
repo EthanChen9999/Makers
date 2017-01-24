@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-md-1 col-md-offset-1 ">
     <% if @maker.photo %>
-    <%= image_tag @maker.photo.image_url(:thumb), class: "img-responsive center-block"%>
+    <%= image_tag @maker.photo.image_url(:thumb), class: "img-responsive center-block", width: '100%' %>
     <% else %>
-    <%= image_tag 'default.jpg' %>
+    <%= image_tag 'default.jpg', width: '100%' %>
     <% end %>
   </div>
   <div class="col-md-3">

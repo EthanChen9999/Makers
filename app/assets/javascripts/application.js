@@ -29,5 +29,6 @@
 //= require tinymce
 
 // Custom
+//= require global
 //= require members
 //= require products

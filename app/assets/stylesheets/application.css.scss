@@ -19,21 +19,7 @@
 @import "fileinput";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-html {
-    position: relative;
-    min-height: 100%;
-}
-body {
-    /* Margin bottom by footer height */
-    margin-bottom: 170px;
-}
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    /* Set the fixed height of the footer here */
-    height: 170px;
-}
+
 .centered{
     width: auto;
     display: table;

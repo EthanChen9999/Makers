@@ -1,13 +1,16 @@
 <div class="row" style="margin-top:3%;">
   <div class="col-md-2">
     <%= render "user_statement" %>
+    <div class="col-md-10 col-md-offset-1">
+      <%= button_to '上传模型', new_product_path, class: "btn btn-default btn-block", method: 'get' %>
+    </div>
   </div>
   <div class="col-md-8">
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation" class="active"><%= link_to '个人简历', "#profile", remote: 'true', 'role': 'tab', 'data-toggle': 'tab', 'data-link': '/members/display', 'class': 'trigger' %></li>
-      <li role="presentation"><%= link_to '已上传图纸', "#product", 'role': 'tab', 'data-toggle': 'tab', 'data-link': '/products/index', 'class': 'trigger' %></li>
-      <li role="presentation"><%= link_to '我的追踪', "#upload", 'role': 'tab', 'data-toggle': 'tab', 'data-link': '', 'class': 'trigger' %></li>
-      <li role="presentation"><%= link_to '我的列表', "#upload", 'role': 'tab', 'data-toggle': 'tab', 'data-link': '', 'class': 'trigger' %></li>
+      <li role="presentation"><%= link_to '已上传图纸', "#product", 'role': 'tab', 'data-toggle': 'tab', 'data-link': '/products', 'class': 'trigger' %></li>
+      <li role="presentation"><%= link_to '我的追踪', "#upload", 'role': 'tab', 'data-toggle': 'tab', 'data-link': '/products', 'class': 'trigger' %></li>
+      <li role="presentation"><%= link_to '我的列表', "#upload", 'role': 'tab', 'data-toggle': 'tab', 'data-link': '/products', 'class': 'trigger' %></li>
     </ul>
     <div id="target">
       <%= render "about" %>

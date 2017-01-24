@@ -40,7 +40,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 # GET /resource/edit
 def edit
   self.resource.build_photo
-  render :edit
   super
 end
 

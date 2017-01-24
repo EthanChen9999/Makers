@@ -1,7 +1,9 @@
 class ProductsController < ApplicationController
-  layout "nested_application", only: [:index]
+
   def index
+
     @products = current_user.products.all
+    render layout: false
   end
   def new
     @product = Product.new
@@ -67,6 +69,6 @@ class ProductsController < ApplicationController
   end
   private
   def product_params
-   params.require(:product).permit(:title, :description, :tags, :print_time, :dimensions, :quantity, drawing_attributes: [:id, :drawing], product_image_attributes: [:id, :crop_x, :crop_y, :crop_w, :crop_h, {images: []}])
+    params.require(:product).permit(:title, :description, :tags, :print_time, :dimensions, :quantity, drawing_attributes: [:id, :drawing], product_image_attributes: [:id, :crop_x, :crop_y, :crop_w, :crop_h, {images: []}])
   end
 end

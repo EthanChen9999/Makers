@@ -5,14 +5,16 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
-    <%= render "layouts/nav" %>
-    <p class ="notice"><%= notice %></p>
-    <%= yield %>
+    <div id="visualArea">
+      <%= render "layouts/nav" %>
+      <p class ="notice"><%= notice %></p>
+      <%= yield %>
+    </div>
     <%= render "layouts/footer" %>
-</div>
-</body>
-
+  </body>
+  <%= yield :jscript %>
 </html>
