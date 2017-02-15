@@ -2,12 +2,6 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
       <%= link_to 'Designing Muse', :root, class: "navbar-brand", 'style': 'color: #eee'%>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -16,24 +10,30 @@
         <li>
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
+              <input type="text" class="form-control" placeholder="<%= t("action.search") %>">
             </div>
             <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
           </form>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span><span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-globe fa-lg" aria-hidden="true"></span><span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><%= link_to "简体中文", change_locale_path(locale: "zh-CN") %></li>
 
+            <li><%= link_to "繁體中文", change_locale_path(locale: "zh-TW") %></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span><span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <% if current_user %>
               <li><%= link_to current_user.username, members_index_path %></li>
-
-              <li><%= link_to('登出', destroy_user_session_path, :method => :delete)  %> </li>
-              <li><%= link_to('修改资料', edit_user_registration_path(:user)) %></li>
+              <li><%= link_to(t("admin.update_profile"), edit_user_registration_path(:user)) %></li>
+              <li><%= link_to(t("admin.login_out"), destroy_user_session_path, :method => :delete)  %> </li>
 
             <% else %>
-              <li><%= link_to('注册', new_registration_path(:user), remote: true, method: "get", "data-toggle": "modal", "data-target": ".registration_modal") %> </li>
-              <li><%= link_to('登入', new_session_path(:user), remote: true, method: "get", "data-toggle": "modal", "data-target": ".login_modal") %></li>
+              <li><%= link_to(t("admin.registration"), new_registration_path(:user), remote: true, method: "get", "data-toggle": "modal", "data-target": ".registration_modal") %> </li>
+              <li><%= link_to(t("admin.login"), new_session_path(:user), remote: true, method: "get", "data-toggle": "modal", "data-target": ".login_modal") %></li>
             <% end %>
           </ul>
         </li>

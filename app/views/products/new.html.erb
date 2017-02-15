@@ -1,102 +1,99 @@
-<script>
-</script>
 <div class="row">
   <div class="col-md-10 col-md-offset-1 page-header">
-    <h1>模型上传<small> 3d图档目前仅支持stl类型</small></h1>
-
+    <h1><%= t("model.upload_model") %><small><%= t("products.only_support.stl") %></small></h1>
   </div>
 </div>
 <%= form_for @product,  html:{ 'roll': 'form', multiple: 'ture'} do |product| %>
-<div class="row">
-  <div class="col-md-5 col-md-offset-1">
-    <div class="form-group">
-      <%= product.fields_for :drawing do |drawing| %>
-      <%= drawing.file_field :drawing, class: 'form-control file-loading', id: 'input-drawing', 'data-show-preview': "false", accept: 'stl' %>
+  <div class="row">
+    <div class="col-md-5 col-md-offset-1">
+      <div class="form-group">
+        <%= product.fields_for :drawing do |drawing| %>
+          <%= drawing.file_field :drawing, class: 'form-control file-loading', id: 'input-drawing', 'data-show-preview': "false", accept: 'stl' %>
+        <% end %>
+      </div>
+      <div class="form-group">
+        <%= product.label t("products.title").to_sym %>
+        <%= product.text_field :title, class: 'form-control', placeholder: t("products.input_model_title") %>
+      </div>
+      <div class="form-group">
+        <%= product.label t("products.tag").to_sym %>
+        <%= product.text_field :tags, class: 'form-control', placeholder: t("products.tag_example") %>
+      </div>
+      <div class="form-group">
+        <%= product.label t("expect_print_time").to_sym %>
+        <%= product.number_field :print_time, class: 'form-control', placeholder: t("products.input_expect_print_time") %>
+      </div>
+      <div class="form-group">
+        <%= product.label t("products.demensions").to_sym %>
+        <%= product.text_field :dimensions, class: 'form-control', placeholder: t("products.demensions_example") %>
+      </div>
+      <div class="form-group">
+        <%= product.label t("products.expect_model_quantity").to_sym %>
+        <%= product.number_field :quantity, class: 'form-control', placeholder: t("quantity_example") %>
+      </div>
+
+    </div>
+    <div class="col-md-5">
+      <div class="form-group">
+        <%= product.label t("products.desc") %>
+        <%= product.text_area :description, class: 'form_controller', placeholder: t("input_desc"), rows: 10 %>
+
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <%= product.fields_for :product_image do |image| %>
+        <%= image.file_field(:images, class: 'file-loading', id: 'input-image', 'multiple': 'true')%>
       <% end %>
     </div>
-    <div class="form-group">
-      <%= product.label :模型名称 %>
-      <%= product.text_field :title, class: 'form-control', placeholder: '请输入模型名称' %>
-    </div>
-    <div class="form-group">
-      <%= product.label :标签 %>
-      <%= product.text_field :tags, class: 'form-control', placeholder: '标签一, 标签二, 标签三...' %>
-    </div>
-    <div class="form-group">
-      <%= product.label :打印时间 %>
-      <%= product.number_field :print_time, class: 'form-control', placeholder: '请输入预估打印时间' %>
-    </div>
-    <div class="form-group">
-      <%= product.label :模型尺寸 %>
-      <%= product.text_field :dimensions, class: 'form-control', placeholder: '请输入模型长宽高,例：100mm x 100mm x 100mm' %>
-    </div>
-    <div class="form-group">
-      <%= product.label :模型重量 %>
-      <%= product.number_field :quantity, class: 'form-control', placeholder: "请输入模型重量（公克）" %>
-    </div>
-
   </div>
-  <div class="col-md-5">
-    <div class="form-group">
-      <%= product.label :模型描述 %>
-      <%= product.text_area :description, class: 'form_controller', placeholder: '请输入模型描述', rows: 10 %>
-
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <%= product.fields_for :product_image do |image| %>
-    <%= image.file_field(:images, class: 'file-loading', id: 'input-image', 'multiple': 'true')%>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3" style="margin-top: 30px; margin-bottom: 30px">
+      <%= product.submit t("action.confirm"), class: 'btn btn-default btn-lg btn-block' %>
     <% end %>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-6 col-md-offset-3" style="margin-top: 30px; margin-bottom: 30px">
-    <%= product.submit '送出', class: 'btn btn-default btn-lg btn-block' %>
-    <% end %>
-  </div>
-</div>
-<script>
+  <script>
 
-  tinyMCE.init({
-  language: 'zh_CN',
-  selector: 'textarea',
-  plugins: [
-  "advlist autolink lists link charmap print preview hr anchor pagebreak",
-  "searchreplace wordcount visualblocks visualchars code fullscreen",
-  "insertdatetime nonbreaking save table contextmenu directionality",
-  "emoticons template paste textcolor colorpicker textpattern imagetools"
-  ],
-  toolbar1: "insertfile undo redo | formatselect fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table hr pagebreak",
-  toolbar2: "bold italic underline strikethrough subscript superscript | forecolor backcolor charmap emoticons | link unlink image media | insertdatetime fullscreen code",
-  menubar: false,
-  image_advtab: true
+    tinyMCE.init({
+      language: 'zh_CN',
+      selector: 'textarea',
+      plugins: [
+        "advlist autolink lists link charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern imagetools"
+      ],
+      toolbar1: "insertfile undo redo | formatselect fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table hr pagebreak",
+      toolbar2: "bold italic underline strikethrough subscript superscript | forecolor backcolor charmap emoticons | link unlink image media | insertdatetime fullscreen code",
+      menubar: false,
+      image_advtab: true
 
-  });
+    });
 
 
-  $("#input-drawing").fileinput({
-  language: "zh",
-  theme: "fa",
-  browseClass: "btn btn-default btn-block",
+    $("#input-drawing").fileinput({
+      language: "zh",
+      theme: "fa",
+      browseClass: "btn btn-default btn-block",
 
-  showRemove: false,
-  showUpload: false
-  });
+      showRemove: false,
+      showUpload: false
+    });
 
 
 
-  $("#input-image").fileinput({
-  language: "zh",
-  theme: "fa",
-  allowedFileExtensions: ["jpg", "png","jpeg"],
-  browseClass: "btn btn-default btn-block",
-  showUpload: false,
-  showRemove: false,
-  minImageWidth: 50,
-  minImageHeight: 50
-  });
+    $("#input-image").fileinput({
+      language: "zh",
+      theme: "fa",
+      allowedFileExtensions: ["jpg", "png","jpeg"],
+      browseClass: "btn btn-default btn-block",
+      showUpload: false,
+      showRemove: false,
+      minImageWidth: 50,
+      minImageHeight: 50
+    });
 
 
-</script>
+  </script>

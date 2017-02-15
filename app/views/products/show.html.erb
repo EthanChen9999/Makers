@@ -18,9 +18,7 @@
       <% end %>
     <div class="col-md-12">
       <%= link_to (image_tag('cube.jpg', width: '100%', height: 'auto', 'class': "img-thumbnail thumb-drawing")), "#", remote: 'ture' %>
-
     </div>
-
   </div>
   <div class="col-md-6" id="image-box">
     <div class="col-md-12" id="drawing-box" drawing-target="<%= @product.id %>"></div>
@@ -28,23 +26,23 @@
   </div>
   <div class="col-md-3">
     <div class="col-md-12 panel panel-default">
-      <div class="col-md-5">打印时间</div>
-      <div class="col-md-7"><p><%= @product.print_time %>分钟</p></div>
-      <div class="col-md-5">尺寸</div>
+      <div class="col-md-5"><%= t("products.expect_print_time") %></div>
+      <div class="col-md-7"><p><%= @product.print_time %><%= t("products.minutes") %></p></div>
+      <div class="col-md-5"><%= t("products.dimensions") %></div>
       <div class="col-md-7"><p><%= @product.dimensions %> (mm)</p></div>
-      <div class="col-md-5">耗材</div>
-      <div class="col-md-7"><p><%= @product.quantity %>公克</p></div>
+      <div class="col-md-5"><%= t("products.expect_print_quantity") %></div>
+      <div class="col-md-7"><p><%= @product.quantity %><%= t("products.gram") %></p></div>
     </div>
     <div class="col-md-12 panel panel-default", id="collection-box">
       <div class="col-md-6">
-        <button type="button" class="btn btn-sm btn-default centered"><span class="glyphicon glyphicon-heart"></span>我的最爱</button>
+        <button type="button" class="btn btn-sm btn-default centered"><span class="glyphicon glyphicon-heart"></span><%= t("products.favorite") %></button>
       </div>
       <div class="col-md-6">
-        <button type="button" class="btn btn-sm btn-default centered"><span class="glyphicon glyphicon-plus"></span>加入收藏</button>
+        <button type="button" class="btn btn-sm btn-default centered"><span class="glyphicon glyphicon-plus"></span><%= t("products.colection") %></button>
       </div>
     </div>
     <div class="col-md-12">
-      <button type="button" class="btn btn-lg btn-default btn-block"><a href="<%= @product.drawing.drawing.url %>">免费下载模型</a></button>
+      <button type="button" class="btn btn-lg btn-default btn-block"><a href="<%= @product.drawing.drawing.url %>"><%= t("products.download") %></a></button>
     </div>
   </div>
 </div>
@@ -55,7 +53,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-1">
 
-    <h3>详细介绍</h3>
+    <h3><%= t("products.desc_detail") %></h3>
     <%= @product.description.html_safe %>
 
 

@@ -2,8 +2,6 @@ require_relative 'boot'
 
 require 'rails/all'
 
-
-
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -15,5 +13,7 @@ module Makers
     # -- all .rb files in that directory are automatically loaded.
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :"zh-CN"
+    config.i18n.available_locales = ['zh-CN', 'zh-TW', 'en']
+    config.i18n.fallbacks = true
   end
 end

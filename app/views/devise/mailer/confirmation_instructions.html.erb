@@ -1,4 +1,5 @@
-<p>欢迎 <%= @email %>!</p>
-<p>点选以下连结开通帐号</p>
+<p><%= t("respect.welcome") @email %>!</p>
 
-<p><%= link_to '开通帐号', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= t("devise.mailer.click_activate_link") %></p>
+
+<p><%= link_to t("devise.mailer.activate"), confirmation_url(@resource, confirmation_token: @token) %></p>

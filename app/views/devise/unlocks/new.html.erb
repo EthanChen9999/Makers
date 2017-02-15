@@ -1,15 +1,15 @@
-<h2>重寄解锁信</h2>
+<h2><%= t("devise.unlocks.resend_unlock_mail") %></h2>
 
-<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
+<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, class: "roll" }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :电子信箱 %><br />
-    <%= f.email_field :email, autofocus: true %>
+  <div class="form-group">
+    <%= f.label t("admin.email_address") %>
+    <%= f.email_field :email, autofocus: true, class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "重寄解锁信" %>
+    <%= f.submit t("devise.unlocks.resend_unlock_mail") %>
   </div>
 <% end %>
 

@@ -1,121 +1,121 @@
 <div class="row">
   <div class="col-md-10 col-md-offset-1 page-header">
-    <h1>更新圖紙內容<small> -<%= @product.title %></small></h1>
+    <h1><%= t("products.change_model_desc") %><small> -<%= @product.title %></small></h1>
   </div>
 </div>
 <%= form_for @product, 'roll': 'form', 'multiple': 'true' do |product| %>
-<div class="row">
-  <div class="col-md-5 col-md-offset-1">
-    <div class="col-md-12", id="drawing-box", drawing-target="<%= @product.id %>", style="display: block;"></div>
-  </div>
-  <div class="col-md-5">
-    <div class="form-group">
-      <%= product.fields_for :drawing do |drawing| %>
-      <%= product.label :更换3D模型图纸 %>
-      <%= drawing.file_field :drawing, class: 'form-controller file-loading', id: 'input-drawing', 'data-show-preview': "false", accept: 'stl' %>
-      <% end %>
+  <div class="row">
+    <div class="col-md-5 col-md-offset-1">
+      <div class="col-md-12", id="drawing-box", drawing-target="<%= @product.id %>", style="display: block;"></div>
+    </div>
+    <div class="col-md-5">
+      <div class="form-group">
+        <%= product.fields_for :drawing do |drawing| %>
+          <%= product.label t("products.change_model_drawing").to_sym %>
+          <%= drawing.file_field :drawing, class: 'form-controller file-loading', id: 'input-drawing', 'data-show-preview': "false", accept: 'stl' %>
+        <% end %>
 
-    </div>
-    <div class="form-group">
-      <%= product.label :图纸名称 %>
-      <%= product.text_field :title, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= product.label :标签 %>
-      <%= product.text_field :tags, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= product.label :打印时间 %>
-      <%= product.number_field :print_time, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= product.label :模型尺寸 %>
-      <%= product.text_field :dimensions, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= product.label :模型重量 %>
-      <%= product.number_field :quantity, class: 'form-control' %>
-    </div>
-  </div>
-</div>
-
-<div class="row" style="margin-top: 20px;">
-  <div class="col-md-10 col-md-offset-1">
-    <div class="form-group">
-      <%= product.label :图纸描述 %>
-      <%= product.text_area :description, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= product.label t("products.title").to_sym %>
+        <%= product.text_field :title, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= product.label t("products.tag").to_sym %>
+        <%= product.text_field :tags, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= product.label t("products.expect_print_time").to_sym %>
+        <%= product.number_field :print_time, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= product.label t("products.dimensions").to_sym %>
+        <%= product.text_field :dimensions, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= product.label t("products.expect_print_quantity").to_sym %>
+        <%= product.number_field :quantity, class: 'form-control' %>
+      </div>
     </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <div class="form-group">
-      <%= product.label :更新图片 %>
-      <%= product.fields_for :product_image do |image| %>
-      <%= image.file_field(:images, class: 'file-loading form-control', id: 'input-image', 'multiple': 'true') %>
-      <% end %>
+
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="form-group">
+        <%= product.label t("products.desc").to_sym %>
+        <%= product.text_area :description, class: 'form-control' %>
+      </div>
     </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <%= product.submit '确认变更', class: 'btn btn-default btn-block' %>
-  <% end %>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="form-group">
+        <%= product.label t("products.change_model_images").to_sym %>
+        <%= product.fields_for :product_image do |image| %>
+          <%= image.file_field(:images, class: 'file-loading form-control', id: 'input-image', 'multiple': 'true') %>
+        <% end %>
+      </div>
+    </div>
   </div>
-</div>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <%= product.submit t("action.confirm"), class: 'btn btn-default btn-block' %>
+    <% end %>
+    </div>
+  </div>
 
 
-<script>
-  // For drawing fileinput
-  $("#input-drawing").fileinput({
-  language: "zh",
-  theme: "fa",
-  browseClass: "btn btn-default btn-block",
-  allowedFileExtensions: ["stl"],
-  showRemove: false,
-  showUpload: false
-  });
-  // For image fileinput
-  $("#input-image").fileinput({
-  language: "zh",
-  theme: "fa",
-  initialPreview: [
-  <% @product.product_image.images.each do |image| %>
-  '<%= image.url %>',
-  <% end %>
-  ],
-  initialPreviewAsData: true,
-  initialPreviewConfig: [
-  <% @product.product_image.images.each do |image| %>
-  {caption: "已上传图片", size: <%= image.size %>, width: "120px", showDelete: false},
-  <% end %>
-  ],
-  allowedFileExtensions: ["jpg", "png","jpeg"],
-  browseClass: "btn btn-default btn-block",
-  showCaption: false,
-  showUpload: false,
-  showRemove: false,
-  minImageWidth: 50,
-  minImageHeight: 50
-  });
-  // For tinyMCE
-  tinyMCE.init({
-  language: 'zh_CN',
-  selector: 'textarea',
-  plugins: [
-  "advlist autolink lists link charmap print preview hr anchor pagebreak",
-  "searchreplace wordcount visualblocks visualchars code fullscreen",
-  "insertdatetime nonbreaking save table contextmenu directionality",
-  "emoticons template paste textcolor colorpicker textpattern imagetools"
-  ],
-  toolbar1: "insertfile undo redo | formatselect fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table hr pagebreak",
-  toolbar2: "bold italic underline strikethrough subscript superscript | forecolor backcolor charmap emoticons | link unlink image media | insertdatetime fullscreen code",
-  menubar: false,
-  image_advtab: true
-  });
+  <script>
+    // For drawing fileinput
+    $("#input-drawing").fileinput({
+      language: "zh",
+      theme: "fa",
+      browseClass: "btn btn-default btn-block",
+      allowedFileExtensions: ["stl"],
+      showRemove: false,
+      showUpload: false
+    });
+    // For image fileinput
+    $("#input-image").fileinput({
+      language: "zh",
+      theme: "fa",
+      initialPreview: [
+          <% @product.product_image.images.each do |image| %>
+          '<%= image.url %>',
+          <% end %>
+      ],
+      initialPreviewAsData: true,
+      initialPreviewConfig: [
+          <% @product.product_image.images.each do |image| %>
+          {caption: "<%= t("products.uploaded_model_images").to_s %>", size: <%= image.size %>, width: "120px", showDelete: false},
+          <% end %>
+      ],
+      allowedFileExtensions: ["jpg", "png","jpeg"],
+      browseClass: "btn btn-default btn-block",
+      showCaption: false,
+      showUpload: false,
+      showRemove: false,
+      minImageWidth: 50,
+      minImageHeight: 50
+    });
+    // For tinyMCE
+    tinyMCE.init({
+      language: 'zh_CN',
+      selector: 'textarea',
+      plugins: [
+        "advlist autolink lists link charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern imagetools"
+      ],
+      toolbar1: "insertfile undo redo | formatselect fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table hr pagebreak",
+      toolbar2: "bold italic underline strikethrough subscript superscript | forecolor backcolor charmap emoticons | link unlink image media | insertdatetime fullscreen code",
+      menubar: false,
+      image_advtab: true
+    });
 
-  //  For laod stl model
-  var drawingBox=document.getElementById('drawing-box');
+    //  For laod stl model
+    var drawingBox=document.getElementById('drawing-box');
     var imagePara=document.createElement("img");
     // Set up the scene, camera, and renderer as global variables.
     var scene, camera, renderer;

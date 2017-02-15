@@ -1,19 +1,19 @@
 <nav class="navbar navbar-inverse" id="footer" role="navigation" style="margin-bottom:0;">
   <div class="container">
     <div class="col-md-3">
-      <h3>Makers</h3>
+      <h3>Designing-Muse</h3>
       <ul class="list-unstyled">
-        <li><%= link_to '关于我们', '123', 'style': 'color: 777;' %></li>
-        <li><%= link_to '联系我们', '#' %></li>
+        <li><%= link_to t("layout.footer.about_us"), '123', 'style': 'color: 777;' %></li>
+        <li><%= link_to t("layout.footer.contact_us"), '#' %></li>
       </ul>
     </div>
     <div class="col-md-3">
-      <h3>相关规定</h3>
+      <h3><%= t("layout.footer.rules") %></h3>
       <ul class="list-unstyled">
-        <li><%= link_to '版权声明', '#' %></li>
-        <li><%= link_to '法律声明', '#' %></li>
-        <li><%= link_to '隐私政策', '#' %></li>
-        <li><%= link_to '用户协议', '#' %></li>
+        <li><%= link_to t("layout.footer.copyright_statement"), '#' %></li>
+        <li><%= link_to t("layout.footer.legal_statement"), '#' %></li>
+        <li><%= link_to t("layout.footer.privacy_statement"), '#' %></li>
+        <li><%= link_to t("layout.footer.terms_condition"), '#' %></li>
       </ul>
     </div>
   </div>

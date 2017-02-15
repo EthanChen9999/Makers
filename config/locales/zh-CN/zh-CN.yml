@@ -1,0 +1,115 @@
+"zh-CN":
+  admin:
+    login: 登录
+    # layouts/_nav
+    login_out: 登出
+    # layouts/_nav
+    update_profile: 修改资料
+    # layouts/_nav, devise/registrations/edit
+    registration: 注册
+    # layouts/_nav
+    email_address: 电子邮箱
+    # devise/passwords/new, devise/registrations/new && edit && modal/_modal_body, devise/sessions/_modal_body, devise/unlocks/new
+    username: 用户名称
+    # devise/registrations/edit && modal/_modal_body
+    pw: 密码
+    # devise/registrations/new && edit && modal/_modal_body, devise/sessions/_modeal_body
+    min_request: 最少需要
+    # devise/passwords/new, devise/registrations/new && edit && modal/_modal_body
+    characters: 字元
+    # devise/passwords/new, devise/registrations/new && edit && modal/_modal_body
+    new_pw: 新密码
+    # devise/passwords/edit, devise/registrations/edit
+    new_pw_again: 请再次输入新设定密码
+    # devise/passwords/edit, devise/registrations/edit
+  action:
+    search: 搜寻
+    # layouts/_nav
+    confirm: 确认发送
+    # devise/passwords/new && edit, products/edit && new
+  respect:
+    welcome: 欢迎
+    # devise/mailer/confirmation_instructions
+    hello: 您好
+    # devise/mailer/password_change && reset_password_instructions && unlock_instructions
+    thanks: 谢谢
+    # devise/mailer/password_change
+  verification:
+    input_code: 请输入验证码
+    # devise/registrations/modal/_modal_body
+  layout:
+    footer:
+      rules: 相关规定
+      about_us: 关于我们
+      contact_us: 联系我们
+      copyright_statement: 版权声明
+      legal_statement: 法律声明
+      privacy_statement: 隐私政策
+      terms_condition: 用户协议
+  model:
+    upload_model: 上传模型
+    # members/index
+# each view
+  devise:
+    confirmations:
+      resent_confirmation: 重寄确认信
+    mailer:
+      click_activate_link: 点选以下链结开通帐号
+      activate: 开通帐号
+      updated_pw: 您的密码已更改
+      change_pw: 更改我的密码
+      request: 我们收到您有一个更改密码的需求，您可以点选以下链结更改密码。
+      ignore: 如果您不需要更改密码，请忽视此封邮件。
+      no_change: 除非您透过以上链结更改密码，否则您的密码将不会有所变更。
+      lock: 您的帐号已经被封锁，由于过多的错误密码输入。
+      unlock: 请点选以下链结解锁。
+      unlock_account: 解锁我的帐号
+    passwords:
+      reset_pw: 重设密码
+    registrations:
+      sign_up: 注册帐号
+      pw_again: 请再次输入密码
+      no_need_change: 若无需更改则不必输入
+      need_input_pw: 请务必输入密码确认变更
+    sessions:
+      login: 登录
+    shared:
+      links:
+        forget_pw: 忘记密码？
+        no_received_confirmed_mail: 尚未收到确认信？
+        no_received_unlock_mail: 尚未收到解锁信？
+    unlocks:
+      resend_unlock_mail: 重寄解锁信
+  members:
+    profile: 个人简历
+    uploaded_model: 已上传模型
+    my_follow: 我的追踪
+    my_list: 我的列表
+  products:
+    change_model_desc: 修改模型内容
+    change_model_drawing: 更新模型图档
+    title: 模型名称
+    tag: 标签
+    expect_print_time: 预估打印时间
+    dimensions: 模型尺寸
+    expect_print_quantity: 预估模型重量
+    desc: 模型描述
+    change_model_images: 更新模型图片
+    uploaded_model_images: 已上传模型图片
+    change_desc: 修改内容
+    destroy_model: 删除模型
+    only_support_stl: 3D图档目前仅支持STL格式
+    input_model_title: 请输入模型名称
+    tag_example: 标签一, 标签二, 标签三...
+    input_expect_print_time: 请输入预估列印时间
+    demensions_example: 请输入模型长宽高（mm），例：100 x 100 x 100
+    quantity_example: 请输入模型重量（公克）
+    input_desc: 请输入模型描述
+    minutes: 分钟
+    gram: 公克
+    favorite: 喜欢
+    colection: 收藏
+    download: 免费下载模型
+    desc_detail: 详细介绍
+  welcome:
+    upload: 上传

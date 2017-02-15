@@ -5,8 +5,8 @@
       <div class="caption">
         <h4><%= product.title %></h4>
         <span class="glyphicon glyphicon-heart"></span><br />
-        <%= link_to('修改内容', edit_product_path(product)) %>
-        <%= link_to('删除图纸', product_path(product), method: :delete) %>
+        <%= link_to(t("products.change_desc"), edit_product_path(product)) %>
+        <%= link_to(t("products.destroy_model"), product_path(product), method: :delete) %>
       </div>
     </div>
   </div>
