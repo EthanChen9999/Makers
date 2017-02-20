@@ -20,16 +20,16 @@
         <%= product.text_field :tags, class: 'form-control', placeholder: t("products.tag_example") %>
       </div>
       <div class="form-group">
-        <%= product.label t("expect_print_time").to_sym %>
+        <%= product.label t("products.expect_print_time").to_sym %>
         <%= product.number_field :print_time, class: 'form-control', placeholder: t("products.input_expect_print_time") %>
       </div>
       <div class="form-group">
-        <%= product.label t("products.demensions").to_sym %>
-        <%= product.text_field :dimensions, class: 'form-control', placeholder: t("products.demensions_example") %>
+        <%= product.label t("products.dimensions").to_sym %>
+        <%= product.text_field :dimensions, class: 'form-control', placeholder: t("products.dimensions_example") %>
       </div>
       <div class="form-group">
         <%= product.label t("products.expect_model_quantity").to_sym %>
-        <%= product.number_field :quantity, class: 'form-control', placeholder: t("quantity_example") %>
+        <%= product.number_field :quantity, class: 'form-control', placeholder: t("products.quantity_example") %>
       </div>
 
     </div>

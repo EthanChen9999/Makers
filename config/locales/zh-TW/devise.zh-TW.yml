@@ -58,4 +58,7 @@ zh-CN:
       not_saved:
         one: "因為1個錯誤導致此%{resource}保存失敗:"
         other: "因為%{count}個錯誤導致此%{resource}保存失敗:"
+      not_saved_production:
+        one: "因為1個錯誤導致操作失敗"
+        other: "因為%{count}個錯誤導致操作失敗"
 # Custom

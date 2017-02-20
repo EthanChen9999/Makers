@@ -18,7 +18,7 @@
     <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label t("pw_again") %>
+    <%= f.label t("devise.registrations.pw_again").to_sym %>
     <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
   </div>
   <div class="form-group">

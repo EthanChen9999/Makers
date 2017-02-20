@@ -92,7 +92,7 @@
     tag: 標籤
     expect_print_time: 預估列印時間
     dimensions: 模型尺寸
-    expect_model_quantity: 預估模型重量
+    expect_print_quantity: 預估模型重量
     desc: 模型描述
     change_model_images: 更新模型圖片
     uploaded_model_images: 已上傳模型圖片
@@ -102,8 +102,8 @@
     input_model_title: 請輸入模型名稱
     tag_example: 標籤一, 標籤二, 標籤三...
     input_expect_print_time: 請輸入預估列印時間
-    dimensions_example: 請輸入模型長寬高（mm），例：100 x 100 x 100
-    quantity_example: 输入模型重量（公克）
+    demensions_example: 請輸入模型長寬高（mm），例：100 x 100 x 100
+    quantity_example: 請输入模型重量（公克）
     input_desc: 請输入模型描述
     minutes: 分鐘
     gram: 公克

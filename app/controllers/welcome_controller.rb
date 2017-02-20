@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    @products = Product.all
+    @products = Product.page(params[:page]).per(25)
   end
   def language
     l = params[:locale].to_s.strip.to_sym
