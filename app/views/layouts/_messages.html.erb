@@ -1,0 +1,12 @@
+<% if flash[:notice] === nil %>
+<% flash.each do |key, value| %>
+<div class="alert alert-<%= key %>">
+  <a href="#" data-dismiss="alert" class="close">×</a>
+  <ul style="list-style:none;">
+    <li>
+      <%= value %>
+    </li>
+  </ul>
+</div>
+<% end %>
+<% end %>
