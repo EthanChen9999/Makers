@@ -16,8 +16,6 @@
             <% end %>
           </div>
           <% end %>
-
-
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-globe fa-lg" aria-hidden="true"></span><span class="caret"></span></a>
@@ -27,20 +25,19 @@
             <li><%= link_to "繁體中文", change_locale_path(locale: "zh-TW") %></li>
           </ul>
         </li>
+        <% if current_user %>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span><span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <% if current_user %>
-              <li><%= link_to current_user.username, members_index_path %></li>
-              <li><%= link_to(t("admin.update_profile"), edit_user_registration_path(:user)) %></li>
-              <li><%= link_to(t("admin.login_out"), destroy_user_session_path, :method => :delete)  %> </li>
-
-            <% else %>
-              <li><%= link_to(t("admin.registration"), new_registration_path(:user), remote: true, method: "get", "data-toggle": "modal", "data-target": ".registration_modal") %> </li>
-              <li><%= link_to(t("admin.login"), new_session_path(:user), remote: true, method: "get", "data-toggle": "modal", "data-target": ".login_modal") %></li>
-            <% end %>
+            <li><%= link_to current_user.username, members_index_path %></li>
+            <li><%= link_to(t("admin.update_profile"), edit_user_registration_path(:user)) %></li>
+            <li><%= link_to(t("admin.login_out"), destroy_user_session_path, :method => :delete)  %> </li>
           </ul>
         </li>
+        <% else %>
+        <li><%= link_to(t("admin.registration"), new_registration_path(:user), remote: true, method: "get", "data-toggle": "modal", "data-target": ".registration_modal") %></li>
+        <li><%= link_to(t("admin.login"), new_session_path(:user), remote: true, method: "get", "data-toggle": "modal", "data-target": ".login_modal") %></li>
+        <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
