@@ -20,8 +20,10 @@ gem 'mailgun-ruby', '~>1.1.2'
 # For Solr search engine
 gem 'sunspot_rails'
 gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
+gem 'progress_bar'
 # For Internationalization
 gem 'http_accept_language'
+gem 'ropencc'
 # For page management
 gem 'kaminari'
 

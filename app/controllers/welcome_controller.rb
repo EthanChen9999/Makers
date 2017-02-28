@@ -1,6 +1,10 @@
 class WelcomeController < ApplicationController
   def index
-    @products = Product.page(params[:page]).per(25)
+    if params[:query]
+      @products
+    else
+      @products = Product.page(params[:page]).per(25)
+    end
   end
   def language
     l = params[:locale].to_s.strip.to_sym
@@ -10,6 +14,24 @@ class WelcomeController < ApplicationController
       redirect_to :back
     else
       redirect_to '/'
+    end
+  end
+  def search
+    traditional = Product.search do
+      str = params[:query]
+      traditional = Ropencc.conv('s2t.json', str)
+      keywords traditional
+    end.results
+    simplified = Product.search do
+      str = params[:query]
+      simplified = Ropencc.conv('t2s.json', str)
+      keywords simplified
+    end.results
+    @products = traditional | simplified
+
+    respond_to do |format|
+      format.html {render action: "index"}
+      format.xml {render xml: @products}
     end
   end
 end

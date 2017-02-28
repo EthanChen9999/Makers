@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'members/about' => 'members#about'
   # Welcome
   get 'welcome/index'
+  get 'welcome/search' => 'welcome#search', as: :search_products
   get '/language/:locale', to: 'welcome#language', as: :change_locale
 
   root to: 'welcome#index'
