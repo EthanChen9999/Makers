@@ -23,7 +23,7 @@ gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in developm
 gem 'progress_bar'
 # For Internationalization
 gem 'http_accept_language'
-gem 'ropencc'
+
 # For page management
 gem 'kaminari'
 
