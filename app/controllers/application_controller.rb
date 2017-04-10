@@ -1,21 +1,18 @@
 class ApplicationController < ActionController::Base
+
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_filter :set_local
   protect_from_forgery with: :exception
 
-
-
   protected
+  # set current page after sign in
   def after_sign_in_path_for(resource)
     request.referer
-  end
-  def after_sign_out_path_for(resource_or_scope)
-    request.referrer
   end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:account_update) do |user_params|
-    user_params.permit(:username, :email, :password, :confirmation, :current_password, photo_attributes: [:image])
+    user_params.permit(:username, :email, :password, :password_confirmation, :profile, photo_attributes: [:id, :image])
     end
     devise_parameter_sanitizer.permit(:sign_up) do |user_params|
       user_params.permit(:username, :email, :password, :password_confirmation)
@@ -30,5 +27,4 @@ class ApplicationController < ActionController::Base
     end
     I18n.locale = l || I18n.locale
   end
-
 end

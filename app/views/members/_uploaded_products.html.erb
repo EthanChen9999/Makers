@@ -1,0 +1,24 @@
+<ul class="nav nav-pills col-md-10 col-md-offset-1" style="margin-top:1%;">
+  <li role="presentation" class="active"><a>tag1</a></li>
+  <li role="presentation"><a>tag2</a></li>
+  <li role="presentation"><a>tag3</a></li>
+</ul>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1" style="margin-top: 1%">
+    <% products.page(params[:page]).per(25).each do |product| %>
+    <div class="thumbnail col-md-2" style="margin-right: 3%;">
+      <%= link_to(image_tag(product.product_image.images[0].url(:large)), product_path(product)) %>
+      <div class="caption">
+        <h4><%= product.title %></h4>
+        <p><%= User.find(product.user_id).username %> <%= t("welcome.upload") %></p>
+        <p><span class="glyphicon glyphicon-heart"></span>4</p>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2 col-md-offset-5">
+    <%= paginate products.page(params[:page]).per(1) %>
+  </div>
+</div>

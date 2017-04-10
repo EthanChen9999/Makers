@@ -1,47 +1,107 @@
-<h2><%= t("admin.update_profile") %></h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "role" }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="form-group">
-    <%= f.label t("admin.email_address").to_sym %><br />
-    <%= f.email_field :email, autofocus: true, class: "form-control" %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-    <div class="form-group">
-      <%= f.label t("admin.username").to_sym %>
-      <%= f.text_field :username, class: "form-control" %>
+<%= render "members/action_nav" %>
+<div class="row" style="margin-bottom:5%;">
+  <div id="conf-nav"class="col-md-2 col-md-offset-1">
+    <div class="navigation" style="position:fixed;">
+      <ul class="nav">
+        <li class="active"><a href="#page1"><b><%= t("devise.registrations.account") %></b></a></li>
+        <li role="presentation"><a href="#page2"><b><%= t("devise.registrations.profile") %></b></a></li>
+      </ul>
     </div>
-    <div class="form-group">
-      <%= f.fields_for :photo do |photo| %>
-      <%= photo.file_field :image %>
+  </div>
+  <div class="col-md-6" id="control-panel">
+    <div id="kv-avatar-errors" class="center-block" style="display:none;"></div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "role" }) do |f| %>
+      <%= devise_error_messages! %>
+      <div id="page1">
+        <h3 style="padding-top: 50px; margin-top: -50px;"><%= t("devise.registrations.account") %></h3>
+        <div class="form-group">
+          <%= f.label t("admin.email_address").to_sym %><br />
+          <%= f.email_field :email, autofocus: true, class: "form-control" %>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+        </div>
+        <div clas="form-group">
+          <%= f.label t("admin.pw") %><br />
+          <b><%= link_to t("devise.registrations.edit_password"), edit_pw_registrations_path, remote: true, method: "get", "data-toggle": "modal", "data-target": ".edit_pw_modal", style: "color:rgb(189,9,29);" %></b>
+        </div><br />
+        <div class="form-group">
+          <%= f.label t("devise.registrations.change_location") %>
+          <ul class="nav">
+            <li role="presentation" class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="padding-left:0px;"><%= t("devise.registrations.select_language") %><span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "简体中文", change_locale_path(locale: "zh-CN") %></li>
+                <li><%= link_to "繁體中文", change_locale_path(locale: "zh-TW") %></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div><br />
+      <div id="page2">
+        <h3 style="padding-top: 50px; margin-top: -50px;"><%= t("devise.registrations.profile") %></h3>
+        <div class="form-group">
+          <%= f.label t("admin.username").to_sym %>
+          <%= f.text_field :username, class: "form-control" %>
+        </div>
+        <div>
+          <%= f.label t("devise.registrations.avatar") %><br />
+          <div class="pull-left" style="width:150px; height:150px;overflow:hidden;display:inline-block;">
+
+            <%= render partial: "/members/user_photo", locals: { uploader: @uploader } %>
+          </div>
+          <%= f.fields_for :photo do |photo| %>
+            <%= photo.file_field :image, id: "avatar", style:"display:none", onchange:"handleFiles(this.files)" %>
+            <a href="#" id="fileSelect" class="pull-left" style="line-height:100px;"><%= t("devise.registrations.select_avatar") %></a>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <%= f.submit t("action.confirm"), class: "btn btn-default" %><br />
       <% end %>
-
-  <div class="form-group">
-    <%= f.label t("admin.new_pw").to_sym %> <i>(<%= t("devise.registrations.no_need_change") %>)</i><br />
-    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= t("admin.min_request") %><%= @minimum_password_length %><%= t("admin.characters") %></em>
-    <% end %>
+      </div>
   </div>
-
-  <div class="form-group">
-    <%= f.label t("admin.new_pw_again").to_sym %>
-    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+</div>
+<!-- edit_pw_modal !-->
+<div class="modal fade edit_pw_modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm role=document">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="form-group">
-    <%= f.label t("admin.pw").to_sym %> <i>(<%= t("devise.registrations.need_input_pw") %>)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
-  </div>
+<script>
+  // scroll spy
+  $('body').scrollspy({ target: '#conf-nav', offset: 120 });
 
-    <%= f.submit t("action.confirm"), class: "btn btn-default" %>
+    // previer upload
+    var fileSelect = document.getElementById("fileSelect");
+    var avatar = document.getElementById("avatar");
+    fileSelect.addEventListener("click", function (e) {
+      if (avatar) {
+        avatar.click();
+      }
+      e.preventDefault(); // prevent navigation to "#"
+    }, false);
+    function handleFiles(files) {
+      var file = files[0];
+      var reader = new FileReader;
+      reader.onload = function(e){
+        $('#preview').attr('src', e.target.result);
+        $('#preview').css('height',100);
+        $('#preview').css('height',100);
 
-<% end %>
+      }
+      reader.readAsDataURL(file);
+    }
 
-<%= link_to "返回", :back %>
+
+
+  </script>

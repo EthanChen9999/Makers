@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="page-header">
+      <h2 class="centered"><%= t("admin.update_profile") %></h2>
+    </div>
+    <div id="kv-avatar-errors" class="center-block" style="display:none;"></div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "role" }) do |f| %>
+      <%= devise_error_messages! %>
+      <div class="col-md-4">
+        <%= f.fields_for :photo do |photo| %>
+          <%= photo.file_field :image, id: "avatar", class: "file-loading" %>
+        <% end %>
+      </div>
+      <div class="col-md-8">
+        <div class="form-group">
+          <%= f.label t("admin.username").to_sym %>
+          <%= f.text_field :username, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label t("admin.email_address").to_sym %><br />
+          <%= f.email_field :email, autofocus: true, class: "form-control" %>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+        </div>
+        <%= f.submit t("action.confirm"), class: "btn btn-default" %><br />
+        <%= render "common/link_back" %> | <%= link_to t("devise.registrations.edit_password"), edit_pw_registrations_path %>
+      <% end %>
+      </div>
+  </div>
+</div>
+<script>
+  document.addEventListener('turbolinks:load',function(){
+    $("#avatar").fileinput({
+      language: "zh",
+      theme: "fa",
+      overwriteInitial: true,
+      maxFileSize: 1500,
+      showClose: false,
+      showCaption: false,
+      browseLabel: '',
+      removeLabel: '',
+      browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
+      removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
+      layoutTemplates: {main2: '{preview} ' + ' {remove} {browse}'},
+      elErrorContainer: '#kv-avatar-errors',
+      msgErrorClass: 'alert alert-block alert-danger',
+        <% if current_user.photo.present? && current_user.photo.image_url.present? %>
+        defaultPreviewContent: '<%= image_tag(current_user.photo.image_url(:large), "alt": "your Avatar", "style": "width:160px", class: "centered") %>',
+        <% else %>
+        defaultPreviewContent: '<%= image_tag("default.jpg", "alt": "your Avatar", "style": "width:160px") %>',
+        <% end %>
+        allowedFileExtensions: ["jpg", "png", "jpeg"]
+    });
+  });
+
+</script>

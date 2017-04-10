@@ -5,7 +5,7 @@
         <%= link_to(image_tag(product.product_image.images[0].url(:large)), product_path(product)) %>
         <div class="caption">
           <h4><%= product.title %></h4>
-          <p><%= User.find(product.user_id).username %> <%= t("welcome.upload") %></p>
+          <p><%= link_to User.find(product.user_id).username, member_path(User.find(product.user_id).username) %> <%= t("welcome.upload") %></p>
           <p><span class="glyphicon glyphicon-heart"></span>4</p>
         </div>
       </div>

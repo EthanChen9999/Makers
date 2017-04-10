@@ -1,0 +1,5 @@
+<% if @uploader.photo.present? && !@uploader.photo.image_url.nil? %>
+<%= image_tag @uploader.photo.image_url(:square), id: "preview", class: 'center-block- img-responsive img-circle' %>
+<% else %>
+<%= image_tag "default", id: "preview", class: "center-block img-responsive", style:"padding:0;"%>
+<% end %>

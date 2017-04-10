@@ -54,6 +54,6 @@ Rails.application.configure do
 
   # Sendding mail config
   config.action_mailer.delivery_method = :letter_opener_web
-  config.action_mailer.default_url_options = { :host => 'localhost' }
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.smtp_settings = config_for(:email).symbolize_keys
 end

@@ -19,7 +19,10 @@
 @import "fileinput";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-
+body{
+    position: relative;
+    padding-top:65px;
+}
 .centered{
     width: auto;
     display: table;
@@ -31,5 +34,15 @@
 }
 .list-unstyled li a{
     color: #777;
-
+}
+#conf-nav .active a{
+    color: #222;
+    font-size: 1.5em;
+}
+#conf-nav a{
+    color: #777;
+    font-size: 1.5em;
+}
+#conf-nav a:hover{
+    color: #555;
 }

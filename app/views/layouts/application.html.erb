@@ -6,7 +6,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <body>
+  <body data-spy="scroll" data-target="conf-nav">
     <div id="visualArea">
       <%= render "layouts/nav" %>
       <p class ="notice"><%= notice %></p>

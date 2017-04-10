@@ -1,0 +1,26 @@
+<%= render "action_nav" %>
+
+<div class="row">
+  <div class="col-md-2 col-md-offset-1">
+    <%= render partial: "/members/user_photo", loacals: { uploader: @uploader } %>
+  </div>
+  <div class="col-md-2">
+    <h3><%= @uploader.username %></h3><br />
+    <h5 style="color:#333;">跟随者 <small>100</small></h5>
+    <h5 style="color:#333;">跟踪者 <small>280</small></h5>
+
+  </div>
+</div>
+
+<ul class="nav nav-tabs col-md-10 col-md-offset-1">
+  <li role="presentation" class="active"><%= link_to t("members.uploaded_model"), "#product", remote: 'true', 'role': 'tab', 'data-toggle': 'tab', 'data-link': '/members/display', 'class': 'trigger' %></li>
+  <li role="presentation"><%= link_to t("members.my_follow"), "#upload" %></li>
+  <li role="presentation"><%= link_to t("members.my_list"), "#uploaded" %></li>
+</ul>
+<div id="target">
+  <%= render "uploaded_products", products: @products %>
+</div>
+
+<script>
+
+</script>

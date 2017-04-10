@@ -2,6 +2,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
+  prepend_before_action :authenticate_scope!, only: [:edit, :edit_pw, :update, :destroy]
+
   # GET /resource/sign_up
   def new
     @user = User.new
@@ -38,15 +40,28 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
 # GET /resource/edit
-def edit
-  self.resource.build_photo
-  super
-end
+  def edit
+    @uploader = current_user
+    # display current user photo,  build empty photo or entry edit view will delete uploaded photo
+    if current_user.photo.present? && current_user.photo.image_url.present?
+      current_user.photo.image_url
+    else
+      self.resource.build_photo
+    end
+    super
+  end
 
 # PUT /resource
 # def update
 #   super
 # end
+
+  def edit_pw
+    respond_to do |format|
+      format.js
+    end
+  end
+
 
 # DELETE /resource
 # def destroy
@@ -83,4 +98,8 @@ end
 # def after_inactive_sign_up_path_for(resource)
 #   super(resource)
 # end
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
+
 end

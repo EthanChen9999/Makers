@@ -22,11 +22,14 @@
     # devise/passwords/edit, devise/registrations/edit
     new_pw_again: 請再次輸入新設定密碼
     # devise/passwords/edit, devise/registrations/edit
+
   action:
     search: 搜尋
     # layouts/_nav
     confirm: 確認發送
     # devise/passwords/new && edit, products/edit && new
+    back: 返回
+    # devise/registration/edit && edit_pw
   respect:
     welcome: 歡迎
     # devise/mailer/confirmation_instructions
@@ -67,10 +70,17 @@
     passwords:
       reset_pw: 重設密碼
     registrations:
+      account: 帳戶信息
+      profile: 用戶資料
       sign_up: 註冊帳號
       pw_again: 請再次輸入密碼
-      no_need_change: 若無需更改則不必輸入
       need_input_pw: 請務必輸入密碼確認變更
+      click_select: 點選編輯
+      edit_password: 修改密碼
+      change_location: 變更語言
+      select_language: 選擇語言
+      avatar: 頭像
+      select_avatar: 選擇上傳頭像
     sessions:
       login: 登入
     shared:

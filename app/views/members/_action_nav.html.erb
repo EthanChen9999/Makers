@@ -1,0 +1,23 @@
+<div id="action-nav">
+  <div class="nav navbar-static-top">
+    <div class="col-md-10 col-md-offset-1 icon">
+      <%= link_to(icon('bandcamp fa-3x'), member_path(current_user.username), style: "color: black;") %>
+      <%= link_to(icon('user-circle-o fa-3x'), edit_user_registration_path(:user), style: "color: black;") %>
+
+      <%= link_to(button_tag(t("model.upload_model"), class: "pull-right btn btn-default btn-lg"), new_product_path) %>
+
+      <%= link_to(button_tag('跟随', class: "pull-right btn btn-default btn-lg"), "#follow") %>
+
+    </div>
+  </div>
+</div>
+<div id="jumbotrons"></div>
+
+<script>
+  $('#action-nav').affix({
+    offset: {
+      top: $('#navbar').height()
+    }
+  });
+
+</script>

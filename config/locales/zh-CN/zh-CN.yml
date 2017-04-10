@@ -27,6 +27,8 @@
     # layouts/_nav
     confirm: 确认发送
     # devise/passwords/new && edit, products/edit && new
+    back: 返回
+    # devise/registration/edit && edit_pw
   respect:
     welcome: 欢迎
     # devise/mailer/confirmation_instructions
@@ -67,10 +69,17 @@
     passwords:
       reset_pw: 重设密码
     registrations:
+      account: 帐户信息
+      profile: 用户资料
       sign_up: 注册帐号
       pw_again: 请再次输入密码
-      no_need_change: 若无需更改则不必输入
       need_input_pw: 请务必输入密码确认变更
+      click_select: 点选编辑
+      edit_password: 修改密码
+      change_location: 变更语言
+      select_language: 选择语言
+      avatar: 头像
+      select_avatar: 选择上传头像
     sessions:
       login: 登录
     shared:
